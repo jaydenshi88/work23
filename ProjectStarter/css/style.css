@@ -1,0 +1,48 @@
+body {
+  font-family: system-ui, sans-serif;
+  font-size: 15px;
+  height: 100%;
+  background: linear-gradient(#af84f0, #7825f4);
+}
+
+header {
+  background-color: #8c4deaaf;
+}
+
+nav {
+  background-color: #532e8aaf;
+}
+
+main {
+  background-color: #ceb9eeaf;
+  font-size: 18px;
+}
+
+footer {
+  background-color: #532e8aaf;
+}
+
+li {
+  display: inline-block;
+  width: 200px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #c9b3db;
+  text-decoration: underline;
+}
+
+h1 {
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  color: #292929;
+}
+
+p {
+  line-height: 1.5;
+}
