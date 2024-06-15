@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+                crossorigin="anonymous">
+
+        <title>Photo Gallery</title>
+        <style>
+                img {
+                        width: 100%;
+                        object-fit: cover;
+                        object-position: top;
+                        border-radius: 3px;
+                        cursor: pointer;
+                }
+
+                .collection {
+                        height: 25vh;
+                }
+
+                .viewer {
+                        height: 40vh;
+                        background-color: rgb(212, 212, 212);
+                        border: goldenrod 4px solid;
+                        border-radius: 3px;
+                }
+
+                .collection:hover {
+                        transform: scale(1.05);
+                        transition-duration: 200ms;
+                        border: 2px solid coral;
+                }
+
+                .title {
+                        position: absolute;
+                        text-align: center;
+                        top: 48%;
+                        font-weight: bold;
+                        font-size: 22px;
+                        color: rgb(255, 0, 0);
+                }
+
+                .viewer-box {
+                        position: relative;
+                }
+        </style>
+</head>
+
+<body>
+
+        <div class="row justify-content-center">
+                <div class="col-12 row justify-content-center p-3 viewer-box">
+                        <div class="col-4 p-0 viewer d-flex justify-content-center"></div>
+                        <div class="title">
+                                Please hover on Image to see the preview
+                        </div>
+                </div>
+                <div class="col-12">
+                        <div class="row justify-content-center">
+                                <div class="col-3">
+                                        <img class="collection" index="1"
+                                                src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg"
+                                                alt="Dog Image">
+                                </div>
+                                <div class="col-3">
+                                        <img class="collection" index="2"
+                                                src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg"
+                                                alt="Cat Image">
+                                </div>
+                                <div class="col-3">
+                                        <img class="collection" index="3"
+                                                src="https://cdn.britannica.com/64/158064-050-1524E1FF/Alpacas.jpg"
+                                                alt="Alpacas Image">
+                                </div>
+                        </div>
+                        <div class="row justify-content-center mt-2">
+                                <div class="col-3">
+                                        <img class="collection" index="4"
+                                                src="https://images.pexels.com/photos/1996333/pexels-photo-1996333.jpeg?cs=srgb&dl=pexels-wildlittlethingsphoto-1996333.jpg&fm=jpg"
+                                                alt="Horse Image">
+                                </div>
+                                <div class="col-3">
+                                        <img class="collection" index="5"
+                                                src="https://media.istockphoto.com/id/1398704456/vector/cute-unicorn-sitting-cartoon-vector-illustration.jpg?s=612x612&w=0&k=20&c=_aJqOrSqf9v_u8vFI3GfmgPzfAe36HHTNOGvrl7Aqis="
+                                                alt="Unicorn Image">
+                                </div>
+                                <div class="col-3">
+                                        <img class="collection" index="6"
+                                                src="https://cdn.pixabay.com/photo/2023/05/12/10/47/ai-generated-7988262_1280.jpg"
+                                                alt="Picachu Image">
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <script>
+                const viewer = document.querySelector('.viewer');
+                const title = document.querySelector('.title');
+                const collections = document.querySelectorAll('.collection');
+                let currentIndex = 1;
+
+                document.addEventListener('keydown', (evt) => {
+                        if (evt.key === 'Tab') {
+                                currentIndex = parseInt(currentIndex) + 1;
+                                if (currentIndex > 6) {
+                                        currentIndex = 1;
+                                }
+                                evt.preventDefault();
+                                const collection = document.querySelector(`[index="${currentIndex}"]`);
+                                viewer.innerHTML = `<img src="${collection.src}" style="width:100%;height:100%" alt="${collection.alt}">`;
+                                title.innerHTML = collection.alt;
+
+                        }
+                });
+
+                collections.forEach(collection => {
+                        collection.addEventListener('mouseenter', () => {
+                                viewer.innerHTML = `<img src="${collection.src}" style="width:100%;height:100%" alt="${collection.alt}">`;
+                                title.innerHTML = collection.alt;
+                                currentIndex = collection.getAttribute('index');
+                        });
+                        collection.addEventListener('mouseleave', () => {
+                                title.innerHTML = `Please hover on Image to see the preview`;
+                                viewer.innerHTML = ""
+                        });
+                });
+        </script>
+
+</body>
+
+</html>
